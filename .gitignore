@@ -1,0 +1,18 @@
+# Imágenes subidas por usuarios
+uploads/productos/*.jpg
+uploads/productos/*.jpeg
+uploads/productos/*.png
+uploads/productos/*.gif
+uploads/productos/*.webp
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Archivos temporales PHP
+*.tmp
+*.cache

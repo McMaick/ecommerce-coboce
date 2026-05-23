@@ -1,0 +1,56 @@
+Options -Indexes
+
+# ── Rewrite engine ─────────────────────────────────────────
+RewriteEngine On
+RewriteBase /ecommerce-coboce/
+
+# Redirigir HTTPS (descomenta en producción)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Permitir archivos y carpetas reales
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Bloquear acceso a archivos sensibles
+RewriteRule ^(config|database|\.env) - [F,L]
+
+# ── Headers de seguridad ───────────────────────────────────
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Proteger carpeta config ────────────────────────────────
+<FilesMatch "^(config\.php|database\.php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ── Bloquear install.php después de usarlo ─────────────────
+# (descomenta una vez instalado)
+# <Files "install.php">
+#     Order Allow,Deny
+#     Deny from all
+# </Files>
+
+# ── Cache para assets estáticos ───────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css         "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/jpeg       "access plus 30 days"
+    ExpiresByType image/png        "access plus 30 days"
+    ExpiresByType image/webp       "access plus 30 days"
+    ExpiresByType image/svg+xml    "access plus 7 days"
+</IfModule>
+
+# ── Comprimir respuestas ───────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+
+# ── Página de error personalizada ─────────────────────────
+ErrorDocument 404 /ecommerce-coboce/index.php

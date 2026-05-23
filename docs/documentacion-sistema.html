@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentación del Sistema — Cerámica COBOCE</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --verde:       #1A6B3A;
+    --verde-dark:  #0D4A28;
+    --verde-light: #2D8A4E;
+    --dorado:      #C9A84C;
+    --gris:        #6B7280;
+    --gris-claro:  #F3F4F6;
+    --borde:       #E5E7EB;
+    --texto:       #111827;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--texto);
+    background: #fff;
+    font-size: 10.5pt;
+    line-height: 1.65;
+  }
+
+  /* ── PORTADA ─────────────────────────────────────────────── */
+  .portada {
+    background: linear-gradient(135deg, var(--verde-dark) 0%, var(--verde) 60%, var(--verde-light) 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    page-break-after: always;
+  }
+  .portada-logo {
+    width: 100px; height: 100px;
+    background: rgba(255,255,255,.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; margin-bottom: 2rem;
+    border: 3px solid rgba(201,168,76,.6);
+  }
+  .portada h1 {
+    font-size: 2.8rem; font-weight: 800; letter-spacing: -1px;
+    margin-bottom: .5rem;
+  }
+  .portada h1 span { color: var(--dorado); }
+  .portada .subtitulo {
+    font-size: 1.15rem; opacity: .85; margin-bottom: 3rem;
+  }
+  .portada-meta {
+    display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 2rem;
+  }
+  .portada-meta-item {
+    text-align: center;
+  }
+  .portada-meta-item .val {
+    font-size: 1.8rem; font-weight: 800; color: var(--dorado); line-height: 1;
+  }
+  .portada-meta-item .lbl {
+    font-size: .75rem; opacity: .7; margin-top: .2rem;
+  }
+  .portada-divider {
+    width: 60px; height: 3px;
+    background: var(--dorado);
+    border-radius: 2px;
+    margin: 2rem auto;
+  }
+  .portada-info {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 12px;
+    padding: 1.2rem 2.5rem;
+    font-size: .88rem;
+    opacity: .9;
+    margin-top: 1rem;
+  }
+
+  /* ── CONTENIDO ───────────────────────────────────────────── */
+  .contenido { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem; }
+
+  /* Índice */
+  .indice { margin-bottom: 3rem; page-break-after: always; }
+  .indice h2 { font-size: 1.6rem; font-weight: 800; color: var(--verde-dark); margin-bottom: 1.5rem; border-bottom: 3px solid var(--dorado); padding-bottom: .5rem; }
+  .indice-lista { list-style: none; }
+  .indice-lista li {
+    padding: .4rem 0;
+    border-bottom: 1px dotted var(--borde);
+    display: flex; justify-content: space-between;
+    font-size: .95rem;
+  }
+  .indice-lista li a { color: var(--verde); text-decoration: none; font-weight: 500; }
+  .indice-lista .seccion { font-weight: 700; color: var(--texto); margin-top: .6rem; }
+  .indice-lista .subseccion { padding-left: 1.5rem; font-size: .88rem; color: var(--gris); }
+
+  /* Secciones */
+  .seccion-doc {
+    margin-bottom: 3rem;
+    page-break-inside: avoid;
+  }
+  .seccion-titulo {
+    display: flex; align-items: center; gap: .75rem;
+    font-size: 1.5rem; font-weight: 800;
+    color: var(--verde-dark);
+    border-bottom: 3px solid var(--dorado);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    page-break-after: avoid;
+  }
+  .seccion-titulo .num {
+    background: var(--verde-dark); color: white;
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; font-weight: 700; flex-shrink: 0;
+  }
+  .subseccion-titulo {
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--verde);
+    margin: 1.5rem 0 .75rem;
+    page-break-after: avoid;
+  }
+  .subseccion-titulo::before {
+    content: '▸ ';
+    color: var(--dorado);
+  }
+
+  p { margin-bottom: .75rem; }
+
+  /* Tarjetas */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .card-doc {
+    background: var(--gris-claro);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 1rem;
+    page-break-inside: avoid;
+  }
+  .card-doc.verde { background: #EFF6F2; border-color: #A7D7B8; }
+  .card-doc.dorado { background: #FDF8EE; border-color: #E8D090; }
+  .card-doc.azul { background: #EFF6FF; border-color: #BFDBFE; }
+  .card-doc.rojo { background: #FEF2F2; border-color: #FECACA; }
+  .card-doc h4 {
+    font-size: .88rem; font-weight: 700; margin-bottom: .5rem;
+    color: var(--verde-dark);
+  }
+  .card-doc p { font-size: .82rem; margin: 0; color: var(--gris); }
+  .card-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+
+  /* Tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: .85rem;
+    page-break-inside: auto;
+  }
+  thead th {
+    background: var(--verde-dark);
+    color: white;
+    padding: .6rem .85rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: .8rem;
+    letter-spacing: .3px;
+  }
+  tbody td {
+    padding: .55rem .85rem;
+    border-bottom: 1px solid var(--borde);
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: var(--gris-claro); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: .2rem .65rem;
+    border-radius: 50px;
+    font-size: .72rem;
+    font-weight: 600;
+  }
+  .badge-verde { background: #DCFCE7; color: #166534; }
+  .badge-dorado { background: #FEF9C3; color: #854D0E; }
+  .badge-azul { background: #DBEAFE; color: #1E40AF; }
+  .badge-rojo { background: #FEE2E2; color: #991B1B; }
+  .badge-gris { background: #F3F4F6; color: #374151; }
+
+  /* Listas */
+  ul.lista-doc, ol.lista-doc {
+    padding-left: 1.5rem;
+    margin: .5rem 0 1rem;
+  }
+  ul.lista-doc li, ol.lista-doc li {
+    margin-bottom: .35rem;
+    font-size: .92rem;
+  }
+
+  /* Code */
+  code {
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    padding: .1rem .4rem;
+    font-family: 'Courier New', monospace;
+    font-size: .8rem;
+    color: var(--verde-dark);
+  }
+  .code-block {
+    background: #1E293B;
+    color: #E2E8F0;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: .78rem;
+    line-height: 1.7;
+    margin: .75rem 0 1.25rem;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-block .comment { color: #64748B; }
+  .code-block .kw { color: #7DD3FC; }
+  .code-block .str { color: #86EFAC; }
+
+  /* Flujo de pasos */
+  .flujo {
+    display: flex;
+    gap: 0;
+    margin: 1rem 0 1.5rem;
+    flex-wrap: wrap;
+  }
+  .paso {
+    flex: 1;
+    text-align: center;
+    padding: .75rem .5rem;
+    background: #EFF6F2;
+    border: 1px solid #A7D7B8;
+    position: relative;
+    min-width: 100px;
+  }
+  .paso:not(:last-child)::after {
+    content: '›';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--verde);
+    z-index: 2;
+  }
+  .paso .paso-num {
+    width: 24px; height: 24px;
+    background: var(--verde-dark); color: white;
+    border-radius: 50%; font-size: .72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto .4rem;
+  }
+  .paso .paso-tit { font-size: .76rem; font-weight: 700; color: var(--verde-dark); }
+  .paso .paso-sub { font-size: .68rem; color: var(--gris); margin-top: .15rem; }
+
+  /* Alertas */
+  .alerta {
+    border-radius: 8px;
+    padding: .85rem 1rem;
+    margin: 1rem 0;
+    font-size: .88rem;
+    border-left: 4px solid;
+    page-break-inside: avoid;
+  }
+  .alerta-info { background: #EFF6FF; border-color: #3B82F6; color: #1E40AF; }
+  .alerta-verde { background: #F0FDF4; border-color: #22C55E; color: #166534; }
+  .alerta-dorado { background: #FFFBEB; border-color: #F59E0B; color: #92400E; }
+
+  /* Estructura de archivos */
+  .arbol {
+    background: #F8FAFC;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-family: 'Courier New', monospace;
+    font-size: .78rem;
+    line-height: 2;
+    margin: .75rem 0 1.25rem;
+  }
+  .arbol .carpeta { color: var(--verde-dark); font-weight: 700; }
+  .arbol .archivo { color: var(--gris); }
+  .arbol .desc { color: #9CA3AF; font-style: italic; }
+
+  /* Footer de página */
+  .pie-doc {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--borde);
+    text-align: center;
+    color: var(--gris);
+    font-size: .8rem;
+  }
+
+  /* Print */
+  @media print {
+    body { font-size: 9.5pt; }
+    .portada { -webkit-print-color-adjust: exact; print-color-adjust: exact; min-height: 100vh; }
+    .seccion-doc { page-break-inside: avoid; }
+    thead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .code-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card-doc { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .paso { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .alerta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+    @page { margin: 1.5cm 1.8cm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     PORTADA
+══════════════════════════════════════════════════════════ -->
+<div class="portada">
+  <div class="portada-logo">🏺</div>
+  <h1>Cerámica <span>COBOCE</span></h1>
+  <div class="subtitulo">Sistema de Comercio Electrónico — Documentación Técnica Completa</div>
+  <div class="portada-divider"></div>
+
+  <div class="portada-meta">
+    <div class="portada-meta-item">
+      <div class="val">PHP 8</div>
+      <div class="lbl">Lenguaje backend</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="val">MySQL</div>
+      <div class="lbl">Base de datos</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="val">Bootstrap 5</div>
+      <div class="lbl">Framework UI</div>
+    </div>
+    <div class="portada-meta-item">
+      <div class="val">3 roles</div>
+      <div class="lbl">Admin · Cliente · Delivery</div>
+    </div>
+  </div>
+
+  <div class="portada-info">
+    📍 Distribuidora Cerámica COBOCE · Cobija, Bolivia &nbsp;|&nbsp;
+    📞 +591 73943006 &nbsp;|&nbsp;
+    🌐 localhost/ecommerce-coboce &nbsp;|&nbsp;
+    📅 Mayo 2026
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTENIDO
+══════════════════════════════════════════════════════════ -->
+<div class="contenido">
+
+  <!-- ÍNDICE -->
+  <div class="indice">
+    <h2>Índice de contenidos</h2>
+    <ul class="indice-lista">
+      <li class="seccion"><a href="#s1">1. Descripción general del sistema</a></li>
+      <li class="subseccion"><a href="#s1-1">1.1 Objetivo y alcance</a></li>
+      <li class="subseccion"><a href="#s1-2">1.2 Stack tecnológico</a></li>
+      <li class="seccion"><a href="#s2">2. Roles de usuario</a></li>
+      <li class="seccion"><a href="#s3">3. Módulos del sistema</a></li>
+      <li class="subseccion"><a href="#s3-1">3.1 Autenticación</a></li>
+      <li class="subseccion"><a href="#s3-2">3.2 Catálogo y tienda</a></li>
+      <li class="subseccion"><a href="#s3-3">3.3 Carrito de compras</a></li>
+      <li class="subseccion"><a href="#s3-4">3.4 Proceso de checkout (4 pasos)</a></li>
+      <li class="subseccion"><a href="#s3-5">3.5 Sistema de puntos de fidelidad</a></li>
+      <li class="subseccion"><a href="#s3-6">3.6 Sistema de delivery</a></li>
+      <li class="subseccion"><a href="#s3-7">3.7 Panel de administración</a></li>
+      <li class="seccion"><a href="#s4">4. Base de datos</a></li>
+      <li class="subseccion"><a href="#s4-1">4.1 Diagrama de tablas principales</a></li>
+      <li class="subseccion"><a href="#s4-2">4.2 Descripción de cada tabla</a></li>
+      <li class="seccion"><a href="#s5">5. Estructura de archivos</a></li>
+      <li class="seccion"><a href="#s6">6. Seguridad</a></li>
+      <li class="seccion"><a href="#s7">7. Reglas de negocio</a></li>
+      <li class="seccion"><a href="#s8">8. Flujos principales</a></li>
+      <li class="seccion"><a href="#s9">9. Configuración e instalación</a></li>
+    </ul>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 1: DESCRIPCIÓN GENERAL -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s1">
+    <div class="seccion-titulo">
+      <div class="num">1</div>
+      Descripción general del sistema
+    </div>
+
+    <div id="s1-1">
+      <div class="subseccion-titulo">1.1 Objetivo y alcance</div>
+      <p>El sistema es una plataforma de comercio electrónico desarrollada para la <strong>Distribuidora Cerámica COBOCE</strong>, ubicada en Cobija, Bolivia. Permite a los clientes explorar el catálogo de productos, realizar compras en línea, acumular y canjear puntos de fidelidad, y recibir sus pedidos mediante un servicio de delivery propio.</p>
+
+      <div class="cards-grid">
+        <div class="card-doc verde">
+          <div class="card-icon">🛒</div>
+          <h4>Tienda en línea</h4>
+          <p>Catálogo con búsqueda, filtros por categoría, detalle de producto, lista de deseos y carrito.</p>
+        </div>
+        <div class="card-doc dorado">
+          <div class="card-icon">⭐</div>
+          <h4>Programa de puntos</h4>
+          <p>Los clientes ganan puntos por cada compra y los canjean como descuento en futuros pedidos.</p>
+        </div>
+        <div class="card-doc azul">
+          <div class="card-icon">🚚</div>
+          <h4>Gestión de delivery</h4>
+          <p>Asignación de repartidores, seguimiento de estado y notificación WhatsApp automática.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="s1-2">
+      <div class="subseccion-titulo">1.2 Stack tecnológico</div>
+      <table>
+        <thead><tr><th>Componente</th><th>Tecnología</th><th>Versión</th><th>Uso</th></tr></thead>
+        <tbody>
+          <tr><td>Backend</td><td>PHP</td><td>8.x</td><td>Lógica de negocio, manejo de sesiones, PDO</td></tr>
+          <tr><td>Base de datos</td><td>MySQL / MariaDB</td><td>8.0+</td><td>Persistencia de datos, transacciones</td></tr>
+          <tr><td>Servidor</td><td>Apache (XAMPP)</td><td>2.4</td><td>Servidor HTTP local</td></tr>
+          <tr><td>Framework UI</td><td>Bootstrap</td><td>5.3.3</td><td>Componentes visuales responsivos</td></tr>
+          <tr><td>Íconos</td><td>Bootstrap Icons</td><td>1.11</td><td>Íconografía del sistema</td></tr>
+          <tr><td>Fuentes</td><td>Google Fonts (Inter)</td><td>—</td><td>Tipografía principal</td></tr>
+          <tr><td>JS adicional</td><td>Vanilla JS</td><td>ES6+</td><td>Interactividad del frontend</td></tr>
+        </tbody>
+      </table>
+      <div class="alerta alerta-info">
+        <strong>Sin frameworks PHP:</strong> El sistema está construido en PHP puro, sin Laravel, Symfony ni ningún otro framework. Se usa el patrón PDO con una clase Database singleton para las conexiones a la base de datos.
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 2: ROLES -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s2">
+    <div class="seccion-titulo">
+      <div class="num">2</div>
+      Roles de usuario
+    </div>
+
+    <p>El sistema maneja tres roles diferenciados, controlados por el campo <code>rol_id</code> de la tabla <code>usuarios</code>:</p>
+
+    <table>
+      <thead><tr><th>rol_id</th><th>Rol</th><th>Acceso</th><th>Permisos principales</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-rojo">1</span></td>
+          <td><strong>Administrador</strong></td>
+          <td><code>/admin/*</code></td>
+          <td>CRUD completo de productos, categorías, pedidos, usuarios; configurar puntos; ver reportes; asignar repartidores</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-verde">2</span></td>
+          <td><strong>Cliente</strong></td>
+          <td><code>/views/*</code></td>
+          <td>Navegar catálogo, agregar al carrito, completar checkout, ver historial de pedidos, acumular y canjear puntos, lista de deseos</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-azul">3</span></td>
+          <td><strong>Repartidor</strong></td>
+          <td><code>/admin/usuarios.php</code></td>
+          <td>Ver pedidos asignados, historial de entregas y estadísticas personales (pedidos en curso, entregados)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alerta alerta-dorado">
+      <strong>Redirects por rol:</strong> Al iniciar sesión, el Admin es redirigido al panel <code>/admin/index.php</code>. Clientes y repartidores van a la tienda principal. Si un usuario no autenticado intenta acceder a una página protegida, es redirigido al login con el parámetro <code>redirect_after_login</code> para volver a su destino original.
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 3: MÓDULOS -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s3">
+    <div class="seccion-titulo">
+      <div class="num">3</div>
+      Módulos del sistema
+    </div>
+
+    <!-- 3.1 Autenticación -->
+    <div id="s3-1">
+      <div class="subseccion-titulo">3.1 Autenticación</div>
+      <p>Gestionado por <code>controllers/AuthController.php</code>. Incluye registro, inicio de sesión, cierre de sesión y protección de páginas por rol.</p>
+
+      <table>
+        <thead><tr><th>Función</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Registro</strong></td><td>Crea una cuenta nueva, asigna <code>rol_id = 2</code> (cliente), otorga 50 puntos de bienvenida automáticamente.</td></tr>
+          <tr><td><strong>Login</strong></td><td>Verifica email + contraseña hasheada con <code>password_hash()</code>. Regenera el ID de sesión con <code>session_regenerate_id(true)</code> preservando datos de sesión (carrito, checkout).</td></tr>
+          <tr><td><strong>Logout</strong></td><td>Destruye la sesión completamente y redirige al inicio.</td></tr>
+          <tr><td><strong>Protección de rutas</strong></td><td>Cada página protegida verifica <code>$_SESSION['usuario_rol']</code>. El acceso no autorizado redirige al login.</td></tr>
+          <tr><td><strong>CSRF</strong></td><td>Todos los formularios POST incluyen un token generado con <code>campoCSRF()</code> y verificado con <code>verificarToken()</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.2 Catálogo -->
+    <div id="s3-2">
+      <div class="subseccion-titulo">3.2 Catálogo y tienda</div>
+
+      <div class="cards-grid">
+        <div class="card-doc verde">
+          <h4>Página de inicio</h4>
+          <p>Banner con carousel de imágenes, barra de estadísticas, sección de categorías y productos destacados.</p>
+        </div>
+        <div class="card-doc verde">
+          <h4>Catálogo</h4>
+          <p>Listado con filtros por categoría, rango de precio y búsqueda por texto. Paginación configurable.</p>
+        </div>
+        <div class="card-doc verde">
+          <h4>Detalle de producto</h4>
+          <p>Galería de imágenes, descripción, precio (normal u oferta), stock disponible, selector de cantidad y botón de carrito.</p>
+        </div>
+        <div class="card-doc dorado">
+          <h4>Lista de deseos</h4>
+          <p>Guardado por usuario autenticado. Los productos pueden moverse al carrito desde la wishlist.</p>
+        </div>
+        <div class="card-doc dorado">
+          <h4>Búsqueda</h4>
+          <p>Búsqueda en tiempo real por nombre de producto en la barra del header.</p>
+        </div>
+        <div class="card-doc azul">
+          <h4>Categorías</h4>
+          <p>Ceramicas, Porcelánato, Mosaicos, Accesorios. Cada categoría muestra su ícono y cantidad de productos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 Carrito -->
+    <div id="s3-3">
+      <div class="subseccion-titulo">3.3 Carrito de compras</div>
+      <p>Manejado por la tabla <code>carrito</code> en la base de datos, vinculado al usuario autenticado. Funcionalidades principales:</p>
+      <ul class="lista-doc">
+        <li>Agregar productos con cantidad seleccionada</li>
+        <li>Actualizar cantidades o eliminar ítems</li>
+        <li>Verificación de stock en tiempo real al agregar</li>
+        <li>El badge del carrito en el header muestra el total de ítems</li>
+        <li>Los ítems persisten entre sesiones (guardados en BD)</li>
+      </ul>
+    </div>
+
+    <!-- 3.4 Checkout -->
+    <div id="s3-4">
+      <div class="subseccion-titulo">3.4 Proceso de checkout (4 pasos)</div>
+
+      <div class="flujo">
+        <div class="paso">
+          <div class="paso-num">1</div>
+          <div class="paso-tit">Entrega</div>
+          <div class="paso-sub">Tipo + zona + dirección</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">2</div>
+          <div class="paso-tit">Puntos</div>
+          <div class="paso-sub">Canjear o acumular</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">3</div>
+          <div class="paso-tit">Pago</div>
+          <div class="paso-sub">Método + comprobante</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">4</div>
+          <div class="paso-tit">Confirmación</div>
+          <div class="paso-sub">Pedido creado</div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Paso</th><th>Archivo</th><th>Qué ocurre</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>1 — Entrega</strong></td>
+            <td><code>paso1-entrega.php</code></td>
+            <td>El cliente elige delivery (con zona y dirección) o retiro en tienda. Las zonas se cargan desde <code>zonas_delivery</code> con su costo. Se guarda en <code>$_SESSION['checkout']</code>. Se limpia cualquier confirmación anterior.</td>
+          </tr>
+          <tr>
+            <td><strong>2 — Puntos</strong></td>
+            <td><code>paso2-puntos.php</code></td>
+            <td>Si el cliente tiene puntos, puede elegir cuántos canjear. El sistema calcula automáticamente el descuento máximo (30% del total). El saldo y la decisión quedan en sesión.</td>
+          </tr>
+          <tr>
+            <td><strong>3 — Pago</strong></td>
+            <td><code>paso3-pago.php</code></td>
+            <td>El cliente selecciona método de pago (efectivo, QR, transferencia). Si paga con transferencia/QR puede subir el comprobante. El código QR se genera dinámicamente.</td>
+          </tr>
+          <tr>
+            <td><strong>4 — Confirmación</strong></td>
+            <td><code>paso4-confirmacion.php</code></td>
+            <td>Se crea el pedido en BD dentro de una transacción: se descuenta stock, se registran movimientos de puntos (ganados y canjeados), se genera el código único del pedido (ej. <code>COB9338-20260502</code>), se vacía el carrito.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alerta alerta-verde">
+        <strong>Código de pedido:</strong> Se genera con formato <code>COB{4_chars_random}-{AAAAMMDD}</code>. Cada pedido tiene un código único almacenado con restricción UNIQUE en la BD.
+      </div>
+    </div>
+
+    <!-- 3.5 Puntos -->
+    <div id="s3-5">
+      <div class="subseccion-titulo">3.5 Sistema de puntos de fidelidad</div>
+
+      <p>Configurado desde el panel admin en <code>admin/puntos.php</code>. Los valores se guardan en la tabla <code>config_puntos</code> y son editables sin tocar código.</p>
+
+      <table>
+        <thead><tr><th>Parámetro</th><th>Valor por defecto</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>Puntos por Bs. gastado</td><td>1.00 pt / Bs.</td><td>Por cada boliviano del subtotal, el cliente gana 1 punto.</td></tr>
+          <tr><td>Valor de cada punto</td><td>Bs. 0.10</td><td>Al canjear, 1 punto = Bs. 0.10 de descuento.</td></tr>
+          <tr><td>Descuento máximo</td><td>30%</td><td>El canje no puede superar el 30% del total del pedido.</td></tr>
+          <tr><td>Bonus de bienvenida</td><td>50 puntos</td><td>Se otorgan automáticamente al registrarse.</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Tipos de movimientos de puntos:</strong></p>
+      <ul class="lista-doc">
+        <li><span class="badge badge-verde">ganado</span> — Compra completada y entregada</li>
+        <li><span class="badge badge-rojo">canjeado</span> — Uso de puntos como descuento en checkout</li>
+        <li><span class="badge badge-dorado">ajuste</span> — Corrección manual por admin</li>
+        <li><span class="badge badge-gris">vencimiento</span> — Expiración de puntos (reservado)</li>
+      </ul>
+
+      <div class="alerta alerta-dorado">
+        <strong>Reversión al cancelar:</strong> Si un pedido es cancelado, el sistema devuelve automáticamente los puntos canjeados al cliente y revierte los puntos que hubiera ganado, manteniendo la integridad del saldo.
+      </div>
+    </div>
+
+    <!-- 3.6 Delivery -->
+    <div id="s3-6">
+      <div class="subseccion-titulo">3.6 Sistema de delivery</div>
+
+      <div class="flujo">
+        <div class="paso">
+          <div class="paso-num">1</div>
+          <div class="paso-tit">Admin asigna</div>
+          <div class="paso-sub">Elige repartidor</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">2</div>
+          <div class="paso-tit">WhatsApp</div>
+          <div class="paso-sub">Mensaje automático</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">3</div>
+          <div class="paso-tit">En camino</div>
+          <div class="paso-sub">Repartidor recoge</div>
+        </div>
+        <div class="paso">
+          <div class="paso-num">4</div>
+          <div class="paso-tit">Entregado</div>
+          <div class="paso-sub">Admin confirma</div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Estado (asignaciones_delivery)</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-dorado">asignado</span></td><td>El pedido fue asignado al repartidor, aún no lo recogió.</td></tr>
+          <tr><td><span class="badge badge-azul">recogido</span></td><td>El repartidor recogió el pedido del local (en_camino).</td></tr>
+          <tr><td><span class="badge badge-verde">entregado</span></td><td>El pedido fue entregado al cliente y el admin confirmó.</td></tr>
+          <tr><td><span class="badge badge-rojo">cancelado</span></td><td>El pedido fue cancelado antes de ser entregado.</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Notificación WhatsApp automática:</strong> Al asignar un repartidor, el sistema genera automáticamente un mensaje con código del pedido, datos del cliente, zona, dirección, productos y total. El admin lo envía con un clic desde el modal que aparece en pantalla.</p>
+
+      <p><strong>Zonas de delivery:</strong> Configurables desde la BD (<code>zonas_delivery</code>). Cada zona tiene nombre, costo de envío y tiempo estimado.</p>
+
+      <div class="alerta alerta-info">
+        <strong>Sincronización de estados:</strong> Cuando el admin cambia el estado de un pedido en <code>admin/pedidos.php</code>, el sistema actualiza automáticamente también el estado en <code>asignaciones_delivery</code> para mantener consistencia en el historial del repartidor.
+      </div>
+    </div>
+
+    <!-- 3.7 Admin -->
+    <div id="s3-7">
+      <div class="subseccion-titulo">3.7 Panel de administración</div>
+
+      <table>
+        <thead><tr><th>Sección</th><th>Archivo</th><th>Funcionalidades</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Dashboard</strong></td>
+            <td><code>admin/index.php</code></td>
+            <td>Estadísticas del día (ventas, pedidos, stock bajo), gráficos de ingresos, últimos pedidos y accesos rápidos.</td>
+          </tr>
+          <tr>
+            <td><strong>Productos</strong></td>
+            <td><code>admin/productos.php</code></td>
+            <td>Crear, editar y desactivar productos. Subida de imagen, configuración de precio, oferta, stock, unidad, código SKU y puntos que genera.</td>
+          </tr>
+          <tr>
+            <td><strong>Categorías</strong></td>
+            <td><code>admin/categorias.php</code></td>
+            <td>Gestión de categorías (Ceramicas, Porcelánato, Mosaicos, Accesorios).</td>
+          </tr>
+          <tr>
+            <td><strong>Pedidos</strong></td>
+            <td><code>admin/pedidos.php</code></td>
+            <td>Listado con filtros por estado y fecha. Vista detalle con cambio de estado, asignación de repartidor y notificación WhatsApp.</td>
+          </tr>
+          <tr>
+            <td><strong>Inventario</strong></td>
+            <td><code>admin/inventario.php</code></td>
+            <td>Vista de stock actual, alertas de stock bajo, ajuste manual de inventario.</td>
+          </tr>
+          <tr>
+            <td><strong>Delivery</strong></td>
+            <td><code>admin/delivery.php</code></td>
+            <td>Panel de pedidos en tránsito, asignaciones activas y gestión de zonas de delivery.</td>
+          </tr>
+          <tr>
+            <td><strong>Usuarios</strong></td>
+            <td><code>admin/usuarios.php</code></td>
+            <td>Lista de clientes y repartidores. Perfil detallado con historial de pedidos (cliente) o historial de entregas (repartidor) con estadísticas.</td>
+          </tr>
+          <tr>
+            <td><strong>Puntos</strong></td>
+            <td><code>admin/puntos.php</code></td>
+            <td>Historial de movimientos de puntos con filtros. Configuración del programa (pts/Bs., valor del punto, descuento máximo) editable desde la UI.</td>
+          </tr>
+          <tr>
+            <td><strong>Reportes</strong></td>
+            <td><code>admin/reportes.php</code></td>
+            <td>Ventas por período, productos más vendidos, métricas de delivery y exportación de datos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 4: BASE DE DATOS -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s4">
+    <div class="seccion-titulo">
+      <div class="num">4</div>
+      Base de datos
+    </div>
+
+    <div id="s4-1">
+      <div class="subseccion-titulo">4.1 Tablas principales y relaciones</div>
+      <div class="alerta alerta-info">
+        Base de datos: <strong>ecommerce_coboce</strong> · Motor: InnoDB · Charset: utf8mb4
+      </div>
+    </div>
+
+    <div id="s4-2">
+      <div class="subseccion-titulo">4.2 Descripción de cada tabla</div>
+
+      <div class="subseccion-titulo" style="font-size:.92rem">usuarios</div>
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT UNSIGNED PK</td><td>Identificador único del usuario</td></tr>
+          <tr><td><code>nombre</code>, <code>apellido</code></td><td>VARCHAR(60)</td><td>Nombre completo del usuario</td></tr>
+          <tr><td><code>email</code></td><td>VARCHAR(120) UNIQUE</td><td>Correo electrónico, usado como login</td></tr>
+          <tr><td><code>telefono</code></td><td>VARCHAR(20)</td><td>Número de teléfono / WhatsApp</td></tr>
+          <tr><td><code>password</code></td><td>VARCHAR(255)</td><td>Hash bcrypt de la contraseña</td></tr>
+          <tr><td><code>rol_id</code></td><td>TINYINT (1,2,3)</td><td>Rol: 1=Admin, 2=Cliente, 3=Repartidor</td></tr>
+          <tr><td><code>puntos</code></td><td>INT UNSIGNED</td><td>Saldo actual de puntos de fidelidad</td></tr>
+          <tr><td><code>activo</code></td><td>TINYINT(1)</td><td>1=activo, 0=desactivado</td></tr>
+        </tbody>
+      </table>
+
+      <div class="subseccion-titulo" style="font-size:.92rem">productos</div>
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT UNSIGNED PK</td><td>Identificador del producto</td></tr>
+          <tr><td><code>categoria_id</code></td><td>FK → categorias</td><td>Categoría a la que pertenece</td></tr>
+          <tr><td><code>codigo</code></td><td>VARCHAR(30) UNIQUE</td><td>Código SKU del producto (puede ser NULL)</td></tr>
+          <tr><td><code>nombre</code></td><td>VARCHAR(150)</td><td>Nombre del producto</td></tr>
+          <tr><td><code>precio</code></td><td>DECIMAL(10,2)</td><td>Precio regular de venta</td></tr>
+          <tr><td><code>precio_oferta</code></td><td>DECIMAL(10,2) NULL</td><td>Precio de oferta (NULL si no está en oferta)</td></tr>
+          <tr><td><code>unidad</code></td><td>VARCHAR(20)</td><td>m², caja, pieza, ml, unidad, bolsa</td></tr>
+          <tr><td><code>imagen</code></td><td>VARCHAR(255)</td><td>Ruta relativa a /uploads/productos/</td></tr>
+          <tr><td><code>stock</code></td><td>INT UNSIGNED</td><td>Unidades disponibles en inventario</td></tr>
+          <tr><td><code>stock_minimo</code></td><td>INT UNSIGNED</td><td>Umbral para alerta de stock bajo (default 5)</td></tr>
+          <tr><td><code>puntos_genera</code></td><td>SMALLINT UNSIGNED</td><td>Puntos que el cliente gana por unidad comprada</td></tr>
+          <tr><td><code>activo</code></td><td>TINYINT(1)</td><td>Soft delete: 0=eliminado, 1=visible</td></tr>
+        </tbody>
+      </table>
+
+      <div class="subseccion-titulo" style="font-size:.92rem">pedidos</div>
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT UNSIGNED PK</td><td>Identificador del pedido</td></tr>
+          <tr><td><code>usuario_id</code></td><td>FK → usuarios</td><td>Cliente que realizó el pedido</td></tr>
+          <tr><td><code>codigo</code></td><td>VARCHAR(20) UNIQUE</td><td>Código legible: COB{hash}-{AAAAMMDD}</td></tr>
+          <tr><td><code>estado</code></td><td>ENUM</td><td>pendiente / confirmado / en_preparacion / en_camino / entregado / cancelado</td></tr>
+          <tr><td><code>tipo_entrega</code></td><td>ENUM</td><td>delivery / retiro_tienda</td></tr>
+          <tr><td><code>zona_id</code></td><td>FK → zonas_delivery</td><td>Zona de entrega seleccionada</td></tr>
+          <tr><td><code>direccion_entrega</code></td><td>TEXT</td><td>Dirección exacta de entrega</td></tr>
+          <tr><td><code>referencia</code></td><td>VARCHAR(200)</td><td>Punto de referencia de la dirección</td></tr>
+          <tr><td><code>puntos_usados</code></td><td>INT UNSIGNED</td><td>Puntos canjeados en este pedido</td></tr>
+          <tr><td><code>descuento_puntos</code></td><td>DECIMAL(8,2)</td><td>Descuento en Bs. por los puntos canjeados</td></tr>
+          <tr><td><code>metodo_pago_id</code></td><td>FK → metodos_pago</td><td>Método de pago elegido</td></tr>
+          <tr><td><code>subtotal</code></td><td>DECIMAL(10,2)</td><td>Suma de productos sin delivery</td></tr>
+          <tr><td><code>costo_delivery</code></td><td>DECIMAL(8,2)</td><td>Costo del envío según zona</td></tr>
+          <tr><td><code>total</code></td><td>DECIMAL(10,2)</td><td>Total final a pagar</td></tr>
+          <tr><td><code>comprobante</code></td><td>VARCHAR(255)</td><td>Imagen del comprobante de pago subido</td></tr>
+          <tr><td><code>puntos_ganados</code></td><td>INT UNSIGNED</td><td>Puntos que el cliente gana con este pedido</td></tr>
+        </tbody>
+      </table>
+
+      <div class="subseccion-titulo" style="font-size:.92rem">Otras tablas importantes</div>
+      <table>
+        <thead><tr><th>Tabla</th><th>Propósito</th></tr></thead>
+        <tbody>
+          <tr><td><code>detalle_pedido</code></td><td>Ítems de cada pedido: producto_id, cantidad, precio_unit, puntos_generados</td></tr>
+          <tr><td><code>categorias</code></td><td>Categorías de productos con nombre</td></tr>
+          <tr><td><code>imagenes_producto</code></td><td>Galería adicional por producto (múltiples imágenes con orden)</td></tr>
+          <tr><td><code>carrito</code></td><td>Carrito persistente: usuario_id, producto_id, cantidad</td></tr>
+          <tr><td><code>wishlist</code></td><td>Lista de deseos: usuario_id, producto_id</td></tr>
+          <tr><td><code>movimientos_puntos</code></td><td>Log auditado de ganancia/canje de puntos con saldo antes y después</td></tr>
+          <tr><td><code>config_puntos</code></td><td>Configuración del programa de fidelidad (editable desde admin)</td></tr>
+          <tr><td><code>metodos_pago</code></td><td>Métodos de pago disponibles (efectivo, QR, transferencia)</td></tr>
+          <tr><td><code>zonas_delivery</code></td><td>Zonas de entrega con costo y tiempo estimado</td></tr>
+          <tr><td><code>asignaciones_delivery</code></td><td>Asignación pedido ↔ repartidor con estado y fecha de entrega</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 5: ESTRUCTURA DE ARCHIVOS -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s5">
+    <div class="seccion-titulo">
+      <div class="num">5</div>
+      Estructura de archivos
+    </div>
+
+    <div class="arbol">
+<span class="carpeta">ecommerce-coboce/</span>
+├── <span class="carpeta">admin/</span>                    <span class="desc">← Panel de administración</span>
+│   ├── index.php              <span class="desc">Dashboard con métricas</span>
+│   ├── productos.php          <span class="desc">CRUD de productos</span>
+│   ├── categorias.php         <span class="desc">Gestión de categorías</span>
+│   ├── pedidos.php            <span class="desc">Gestión de pedidos y asignación delivery</span>
+│   ├── inventario.php         <span class="desc">Control de stock</span>
+│   ├── delivery.php           <span class="desc">Panel de delivery y zonas</span>
+│   ├── usuarios.php           <span class="desc">Gestión de usuarios (perfil detallado)</span>
+│   ├── puntos.php             <span class="desc">Historial de puntos + configuración</span>
+│   ├── reportes.php           <span class="desc">Reportes y estadísticas</span>
+│   └── <span class="carpeta">includes/</span>
+│       ├── admin_header.php   <span class="desc">Sidebar + topbar del admin</span>
+│       └── admin_footer.php   <span class="desc">Scripts y cierre del panel</span>
+│
+├── <span class="carpeta">assets/</span>
+│   ├── <span class="carpeta">css/</span>
+│   │   └── style.css          <span class="desc">Estilos globales de la tienda</span>
+│   └── <span class="carpeta">js/</span>                   <span class="desc">Scripts del frontend</span>
+│
+├── <span class="carpeta">config/</span>
+│   ├── config.php             <span class="desc">Constantes: DB, APP_URL, sesión, puntos</span>
+│   └── database.php           <span class="desc">Clase Database (PDO singleton)</span>
+│
+├── <span class="carpeta">controllers/</span>
+│   └── AuthController.php     <span class="desc">Login, registro, logout, CSRF</span>
+│
+├── <span class="carpeta">database/</span>
+│   └── coboce.sql             <span class="desc">Schema completo + datos iniciales</span>
+│
+├── <span class="carpeta">docs/</span>
+│   └── documentacion-sistema.html   <span class="desc">Este documento</span>
+│
+├── <span class="carpeta">includes/</span>
+│   ├── header.php             <span class="desc">Encabezado de la tienda (navbar, carrito)</span>
+│   ├── footer.php             <span class="desc">Pie de página de la tienda</span>
+│   └── funciones.php          <span class="desc">Helpers: limpiar(), flash(), redirigir(), etc.</span>
+│
+├── <span class="carpeta">models/</span>
+│   └── Producto.php           <span class="desc">Modelo de productos (listar, crear, actualizar)</span>
+│
+├── <span class="carpeta">uploads/</span>                   <span class="desc">← Archivos subidos por usuarios</span>
+│   ├── <span class="carpeta">productos/</span>             <span class="desc">Imágenes de productos</span>
+│   ├── <span class="carpeta">banners/</span>               <span class="desc">Imágenes del carousel principal</span>
+│   └── <span class="carpeta">comprobantes/</span>          <span class="desc">Comprobantes de pago subidos</span>
+│
+├── <span class="carpeta">views/</span>                     <span class="desc">← Vistas de la tienda pública</span>
+│   ├── catalogo.php           <span class="desc">Listado de productos con filtros</span>
+│   ├── producto.php           <span class="desc">Detalle de un producto</span>
+│   ├── carrito.php            <span class="desc">Vista del carrito</span>
+│   ├── login.php              <span class="desc">Formulario de inicio de sesión</span>
+│   ├── registro.php           <span class="desc">Formulario de registro</span>
+│   ├── perfil.php             <span class="desc">Perfil del usuario, historial, puntos</span>
+│   ├── wishlist.php           <span class="desc">Lista de deseos</span>
+│   └── <span class="carpeta">checkout/</span>
+│       ├── paso1-entrega.php  <span class="desc">Selección de zona y tipo de entrega</span>
+│       ├── paso2-puntos.php   <span class="desc">Canje de puntos de fidelidad</span>
+│       ├── paso3-pago.php     <span class="desc">Método de pago y comprobante</span>
+│       └── paso4-confirmacion.php  <span class="desc">Creación del pedido y confirmación</span>
+│
+└── index.php                  <span class="desc">Página de inicio de la tienda</span>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 6: SEGURIDAD -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s6">
+    <div class="seccion-titulo">
+      <div class="num">6</div>
+      Seguridad
+    </div>
+
+    <table>
+      <thead><tr><th>Mecanismo</th><th>Implementación</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Contraseñas</strong></td>
+          <td>Hasheadas con <code>password_hash()</code> (bcrypt, costo 12). Verificación con <code>password_verify()</code>. Nunca se almacena la contraseña en texto plano.</td>
+        </tr>
+        <tr>
+          <td><strong>CSRF</strong></td>
+          <td>Token único por sesión generado con <code>random_bytes(32)</code>, incluido en todos los formularios POST y verificado antes de procesar.</td>
+        </tr>
+        <tr>
+          <td><strong>SQL Injection</strong></td>
+          <td>Todas las consultas usan PDO con parámetros preparados (<code>prepare()</code> + <code>execute()</code>). Ninguna consulta concatena variables directamente.</td>
+        </tr>
+        <tr>
+          <td><strong>XSS</strong></td>
+          <td>Toda salida de datos de usuario pasa por <code>limpiar()</code> que aplica <code>htmlspecialchars()</code> con flags ENT_QUOTES.</td>
+        </tr>
+        <tr>
+          <td><strong>Sesiones</strong></td>
+          <td>Cookie httponly, SameSite=Lax, lifetime 24h. Se llama <code>session_regenerate_id(true)</code> al autenticarse para prevenir session fixation.</td>
+        </tr>
+        <tr>
+          <td><strong>Control de acceso</strong></td>
+          <td>Cada página protegida verifica <code>$_SESSION['usuario_rol']</code>. El admin panel requiere <code>rol_id = 1</code> explícitamente.</td>
+        </tr>
+        <tr>
+          <td><strong>Subida de archivos</strong></td>
+          <td>Validación de extensión (JPG, PNG, WEBP), tamaño máximo 3MB, nombre aleatorio con <code>uniqid()</code> para evitar sobrescrituras.</td>
+        </tr>
+        <tr>
+          <td><strong>Transacciones BD</strong></td>
+          <td>Las operaciones críticas (crear pedido, actualizar stock, registrar puntos) se ejecutan dentro de transacciones PDO con rollback en caso de error.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 7: REGLAS DE NEGOCIO -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s7">
+    <div class="seccion-titulo">
+      <div class="num">7</div>
+      Reglas de negocio
+    </div>
+
+    <div class="cards-grid">
+      <div class="card-doc verde">
+        <h4>Stock</h4>
+        <p>El stock se descuenta al confirmarse el pedido (paso 4), no al agregarlo al carrito. Si el stock es insuficiente al confirmar, la transacción falla.</p>
+      </div>
+      <div class="card-doc dorado">
+        <h4>Puntos — ganancia</h4>
+        <p>Los puntos se <strong>acreditan</strong> al cliente cuando el admin marca el pedido como <em>Entregado</em>, no al confirmar la compra.</p>
+      </div>
+      <div class="card-doc rojo">
+        <h4>Puntos — cancelación</h4>
+        <p>Al cancelar un pedido, el sistema devuelve puntos canjeados y revierte puntos ganados automáticamente.</p>
+      </div>
+      <div class="card-doc azul">
+        <h4>Checkout continuo</h4>
+        <p>Al iniciar un nuevo checkout (paso 1), se limpia la sesión del pedido anterior para evitar que un cliente vea la confirmación de una compra antigua.</p>
+      </div>
+      <div class="card-doc verde">
+        <h4>Soft delete</h4>
+        <p>Los productos no se eliminan físicamente. Se marcan con <code>activo = 0</code> para preservar el historial de pedidos. Pueden restaurarse.</p>
+      </div>
+      <div class="card-doc dorado">
+        <h4>Delivery sincronizado</h4>
+        <p>Al cambiar el estado de un pedido en el admin, el estado en <code>asignaciones_delivery</code> se actualiza en la misma transacción.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 8: FLUJOS PRINCIPALES -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s8">
+    <div class="seccion-titulo">
+      <div class="num">8</div>
+      Flujos principales
+    </div>
+
+    <div class="subseccion-titulo">8.1 Flujo de compra completo</div>
+    <ol class="lista-doc">
+      <li>Cliente navega el catálogo y agrega productos al carrito</li>
+      <li>Hace clic en "Ir al checkout" → se verifica que esté autenticado</li>
+      <li><strong>Paso 1:</strong> Elige tipo de entrega, zona y dirección</li>
+      <li><strong>Paso 2:</strong> Decide si canjea puntos (slider de cantidad)</li>
+      <li><strong>Paso 3:</strong> Selecciona método de pago, sube comprobante si aplica</li>
+      <li><strong>Paso 4:</strong> Se ejecuta la transacción: crea pedido, descuenta stock, registra movimientos de puntos, limpia carrito</li>
+      <li>Cliente ve resumen de confirmación con código de pedido</li>
+      <li>Admin recibe el pedido en su panel y lo procesa</li>
+    </ol>
+
+    <div class="subseccion-titulo">8.2 Flujo de asignación de delivery</div>
+    <ol class="lista-doc">
+      <li>Admin entra al detalle del pedido en <code>admin/pedidos.php</code></li>
+      <li>En el panel lateral "Repartidor", selecciona al repartidor disponible y agrega notas opcionales</li>
+      <li>Clic en "Asignar repartidor"</li>
+      <li>El sistema crea el registro en <code>asignaciones_delivery</code>, avanza el estado del pedido a <em>En camino</em></li>
+      <li>Se genera el mensaje WhatsApp con todos los detalles del pedido</li>
+      <li>Aparece un modal con la vista previa del mensaje y el botón "Abrir WhatsApp y enviar"</li>
+      <li>Admin hace clic → WhatsApp se abre con el mensaje pre-llenado para el repartidor</li>
+      <li>Repartidor recibe el mensaje, recoge el pedido y lo entrega</li>
+      <li>Admin confirma la entrega cambiando el estado a "Entregado" → se acreditan los puntos al cliente</li>
+    </ol>
+
+    <div class="subseccion-titulo">8.3 Flujo del sistema de puntos</div>
+    <ol class="lista-doc">
+      <li>Cliente se registra → recibe 50 puntos de bienvenida</li>
+      <li>Cliente hace una compra de Bs. 200 → el sistema calcula 200 puntos a ganar (si config es 1 pt/Bs.)</li>
+      <li>En checkout Paso 2: si tiene puntos, puede canjear hasta el 30% del total</li>
+      <li>Al confirmar el pedido: se descuentan los puntos canjeados del saldo</li>
+      <li>Al marcar como entregado: se acreditan los puntos ganados del pedido</li>
+    </ol>
+  </div>
+
+  <!-- ─────────────────────────────────────────────────────── -->
+  <!-- SECCIÓN 9: INSTALACIÓN -->
+  <!-- ─────────────────────────────────────────────────────── -->
+  <div class="seccion-doc" id="s9">
+    <div class="seccion-titulo">
+      <div class="num">9</div>
+      Configuración e instalación
+    </div>
+
+    <div class="subseccion-titulo">9.1 Requisitos</div>
+    <ul class="lista-doc">
+      <li>XAMPP (Apache 2.4 + PHP 8.x + MySQL 8.0+)</li>
+      <li>Navegador moderno (Chrome, Firefox, Edge)</li>
+      <li>Acceso a internet para cargar Bootstrap y Google Fonts vía CDN</li>
+    </ul>
+
+    <div class="subseccion-titulo">9.2 Pasos de instalación</div>
+    <ol class="lista-doc">
+      <li>Copiar la carpeta <code>ecommerce-coboce/</code> en <code>C:\xampp\htdocs\</code></li>
+      <li>Iniciar Apache y MySQL desde el panel de XAMPP</li>
+      <li>Abrir phpMyAdmin en <code>localhost/phpmyadmin</code></li>
+      <li>Crear la base de datos <code>ecommerce_coboce</code></li>
+      <li>Importar el archivo <code>database/coboce.sql</code></li>
+      <li>Verificar <code>config/config.php</code>: las credenciales de BD son <code>root</code> sin contraseña (XAMPP por defecto)</li>
+      <li>Acceder a <code>localhost/ecommerce-coboce</code></li>
+    </ol>
+
+    <div class="subseccion-titulo">9.3 Configuración en config/config.php</div>
+    <table>
+      <thead><tr><th>Constante</th><th>Valor actual</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td><code>DB_HOST</code></td><td>localhost</td><td>Host de la base de datos</td></tr>
+        <tr><td><code>DB_NAME</code></td><td>ecommerce_coboce</td><td>Nombre de la BD</td></tr>
+        <tr><td><code>DB_USER</code></td><td>root</td><td>Usuario MySQL</td></tr>
+        <tr><td><code>DB_PASS</code></td><td>(vacío)</td><td>Contraseña MySQL</td></tr>
+        <tr><td><code>APP_URL</code></td><td>http://localhost/ecommerce-coboce</td><td>URL base del sistema</td></tr>
+        <tr><td><code>APP_NAME</code></td><td>Cerámica COBOCE</td><td>Nombre de la tienda</td></tr>
+        <tr><td><code>MONEDA</code></td><td>Bs.</td><td>Símbolo de moneda</td></tr>
+        <tr><td><code>CIUDAD</code></td><td>Cobija, Bolivia</td><td>Ciudad de la tienda</td></tr>
+        <tr><td><code>SESSION_LIFETIME</code></td><td>86400</td><td>Duración de sesión en segundos (24h)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="subseccion-titulo">9.4 Datos de prueba — credenciales admin</div>
+    <div class="alerta alerta-dorado">
+      <strong>Usuario administrador:</strong> El SQL incluye un usuario admin por defecto. Verificar en la tabla <code>usuarios</code> el email del administrador o crearlo directamente insertando un registro con <code>rol_id = 1</code> y password hasheado con <code>password_hash('tu_contraseña', PASSWORD_DEFAULT)</code>.
+    </div>
+
+    <div class="subseccion-titulo">9.5 Imágenes del carousel (opcional)</div>
+    <p>Para mostrar las imágenes en el banner del inicio, guardar los archivos en:</p>
+    <div class="code-block">C:\xampp\htdocs\ecommerce-coboce\uploads\banners\banner1.jpg
+C:\xampp\htdocs\ecommerce-coboce\uploads\banners\banner2.jpg</div>
+  </div>
+
+  <!-- PIE -->
+  <div class="pie-doc">
+    <p><strong>Cerámica COBOCE</strong> — Sistema de Comercio Electrónico</p>
+    <p>Cobija, Bolivia · +591 73943006 · Mayo 2026</p>
+    <p style="margin-top:.5rem;opacity:.6">Documento generado automáticamente · Versión 1.0</p>
+  </div>
+
+</div>
+</body>
+</html>
