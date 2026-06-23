@@ -57,8 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $dirDest . $nombreArchivo)) {
                 // Eliminar imagen anterior si es edición
                 if ($idEdit) {
-                    $viejoImg = $db->prepare("SELECT imagen FROM productos WHERE id=:id")->execute([':id'=>$idEdit]);
-                    $imgVieja = $db->query("SELECT imagen FROM productos WHERE id=$idEdit")->fetchColumn();
+                    $stmtImg = $db->prepare("SELECT imagen FROM productos WHERE id=:id");
+                    $stmtImg->execute([':id' => $idEdit]);
+                    $imgVieja = $stmtImg->fetchColumn();
                     if ($imgVieja && file_exists(UPLOADS_PATH . '/' . $imgVieja)) {
                         @unlink(UPLOADS_PATH . '/' . $imgVieja);
                     }

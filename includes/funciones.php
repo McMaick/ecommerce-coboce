@@ -44,6 +44,11 @@ function requiereAdmin(): void {
     if (!esAdmin()) redirigir(APP_URL . '/index.php');
 }
 
+function requiereDelivery(): void {
+    requiereLogin();
+    if (!esDelivery()) redirigir(APP_URL . '/index.php');
+}
+
 // ── Flash messages ────────────────────────────────────────
 function flash(string $tipo, string $mensaje): void {
     $_SESSION['flash'] = ['tipo' => $tipo, 'mensaje' => $mensaje];

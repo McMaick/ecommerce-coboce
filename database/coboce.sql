@@ -46,6 +46,11 @@ CREATE TABLE IF NOT EXISTS usuarios (
     FOREIGN KEY (rol_id) REFERENCES roles(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Usuario repartidor de prueba (email: repartidor@coboce.bo / password: repartidor123)
+INSERT IGNORE INTO usuarios (rol_id, nombre, apellido, email, telefono, password_hash, ciudad) VALUES
+    (3, 'Marco', 'Quispe', 'repartidor@coboce.bo', '73900001',
+     '$2y$10$Jt7yv3YvahX4KdBPqGVn5.oFCAt2SpID/h7b1NWKP.CmhRv47G/nG', 'Cobija');
+
 -- ------------------------------------------------------------
 -- TABLA: categorias
 -- ------------------------------------------------------------

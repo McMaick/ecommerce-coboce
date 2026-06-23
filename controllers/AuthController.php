@@ -53,10 +53,11 @@ switch ($accion) {
         $destino = $_SESSION['redirect_after_login'] ?? null;
         unset($_SESSION['redirect_after_login']);
 
-        redirigir($usuario['rol'] === 'admin'
-            ? APP_URL . '/admin/index.php'
-            : ($destino ?? APP_URL . '/index.php')
-        );
+        redirigir(match ($usuario['rol']) {
+            'admin'    => APP_URL . '/admin/index.php',
+            'delivery' => APP_URL . '/repartidor/index.php',
+            default    => $destino ?? APP_URL . '/index.php',
+        });
 
     // ── REGISTRO ──────────────────────────────────────────
     case 'registro':

@@ -101,12 +101,6 @@ $metodosPago->execute([':desde' => $fechaDesde, ':hasta' => $fechaHasta]);
 $metodosPago = $metodosPago->fetchAll();
 
 // ── Clientes nuevos ────────────────────────────────────────
-$clientesNuevos = (int)$db->prepare(
-    "SELECT COUNT(*) FROM usuarios WHERE rol_id=2 AND DATE(creado_en) BETWEEN :desde AND :hasta"
-)->execute([':desde' => $fechaDesde, ':hasta' => $fechaHasta])
-    ? $db->query("SELECT COUNT(*) FROM usuarios WHERE rol_id=2 AND DATE(creado_en) BETWEEN '$fechaDesde' AND '$fechaHasta'")->fetchColumn()
-    : 0;
-
 $stmtCN = $db->prepare(
     "SELECT COUNT(*) FROM usuarios WHERE rol_id=2 AND DATE(creado_en) BETWEEN :desde AND :hasta"
 );

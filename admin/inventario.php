@@ -26,7 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pm = new Producto();
 
                 if ($tipoMov === 'ajuste') {
-                    $curr  = (int)$db->query("SELECT stock FROM productos WHERE id=$pid")->fetchColumn();
+                    $stmtCurr = $db->prepare("SELECT stock FROM productos WHERE id=:id");
+                    $stmtCurr->execute([':id' => $pid]);
+                    $curr  = (int)$stmtCurr->fetchColumn();
                     $delta = $cantidad - $curr;
                     if ($delta !== 0) {
                         $pm->actualizarStock($pid, $delta, 'ajuste',
